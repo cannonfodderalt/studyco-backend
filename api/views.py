@@ -9,9 +9,13 @@ from django_filters.rest_framework import DjangoFilterBackend
 # StudySpot ViewSet
 class StudySpotViewSet(viewsets.ModelViewSet):
     queryset = StudySpot.objects.all()
-    serializer_class = serializers.StudySpotSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name']
+
+    def get_serializer_class(self):
+        if self.action == 'list':     # /api/studyspots/
+            return serializers.SpotSerializer
+        if self.action == 'retrieve': # /api/studyspots/<id>/
+            return serializers.SpotDetailSerializer
+        return serializers.SpotDetailSerializer
 
 
 # Criteria ViewSet
