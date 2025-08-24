@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import StudySpot, Criteria, SpotCriteria
+from .models import StudySpot, Criteria, SpotCriteria, Score, BusynessLevel
 from . import serializers
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -33,3 +33,11 @@ class SpotCriteriaViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['studySpot', 'criteria']
 
+
+class ScoreViewSet(viewsets.ModelViewSet):
+    queryset = Score.objects.all()
+    serializer_class = serializers.ScoreSerializer
+
+class BusynessLevelViewSet(viewsets.ModelViewSet):
+    queryset = BusynessLevel.objects.all()
+    serializer_class = serializers.BusynessLevelSerializer

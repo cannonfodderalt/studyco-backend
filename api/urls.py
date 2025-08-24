@@ -6,6 +6,8 @@ router = DefaultRouter()
 router.register(r'spots', views.StudySpotViewSet, basename='spot')
 router.register(r'criteria', views.CriteriaViewSet, basename='criteria')
 router.register(r'spotcriteria', views.SpotCriteriaViewSet, basename='spotcriteria')
+router.register(r'scores', views.ScoreViewSet)
+router.register(r'busyness', views.BusynessLevelViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

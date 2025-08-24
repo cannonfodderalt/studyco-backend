@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import StudySpot, Criteria, SpotCriteria
+from .models import StudySpot, Criteria, SpotCriteria, Score, BusynessLevel
 
 class SpotSerializer(serializers.ModelSerializer):
     criteria = serializers.SerializerMethodField()
@@ -45,3 +45,16 @@ class SpotDetailSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, spot):
         return spot.get_image_urls()
+    
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score
+        fields = "__all__"
+
+class BusynessLevelSerializer(serializers.ModelSerializer):
+    studySpot = serializers.PrimaryKeyRelatedField(queryset=StudySpot.objects.all())
+    score = serializers.PrimaryKeyRelatedField(queryset=Score.objects.all())
+
+    class Meta:
+        model = BusynessLevel
+        fields = "__all__"

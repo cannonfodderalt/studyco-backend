@@ -36,3 +36,19 @@ class SpotImages(models.Model):
     
     def __str__(self):
         return f"Image for {self.studySpot.name} at {self.image_url}"
+    
+class Score(models.Model):
+    rank = models.IntegerField()
+    description = models.CharField(max_length=100, default="")
+    
+    def __str__(self):
+        return f"Score {self.rank}: {self.description}"
+    
+class BusynessLevel(models.Model):
+    studySpot = models.ForeignKey(StudySpot, on_delete=models.CASCADE)
+    score = models.ForeignKey(Score, on_delete=models.CASCADE)
+    submissionDate = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.studySpot.name} - {self.score} at {self.submissionDate}"
+    
