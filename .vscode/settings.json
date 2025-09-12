@@ -29,5 +29,7 @@
         "env.bak{,/**}",
         "venv.bak{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/9ad447e4-e2fe-48da-9fb8-91945e9f3173/resourceGroups/StudyCo/providers/Microsoft.Web/sites/studyco",
+    "appService.deploySubpath": "."
 }
